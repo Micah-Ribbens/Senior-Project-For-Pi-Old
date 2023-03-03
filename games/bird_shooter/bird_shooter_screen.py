@@ -17,7 +17,7 @@ class BirdShooterScreen(Screen):
     individual_buffer = total_buffer / 2
 
     players_keys = [[KEY_A, KEY_D, KEY_W, KEY_S, KEY_F, KEY_G],
-                    [KEY_LEFT, KEY_RIGHT, KEY_UP, KEY_DOWN, KEY_QUESTION_MARK, KEY_PERIOD]]
+                    [KEY_LEFT, KEY_RIGHT, KEY_UP, KEY_DOWN, KEY_SLASH, KEY_PERIOD]]
 
     player_boundaries = [[0, middle_of_screen - Player.length - individual_buffer, 0, SCREEN_HEIGHT - Player.height],
                          [middle_of_screen + individual_buffer, SCREEN_LENGTH - Player.length, 0, SCREEN_HEIGHT - Player.height]]
@@ -30,7 +30,7 @@ class BirdShooterScreen(Screen):
     bullets = []
     enemy = Enemy()
     high_score = 0
-    hud = HUD(2, [], SCREEN_LENGTH, SCREEN_HEIGHT * .1, 1, None)
+    hud = HUD(2, [], SCREEN_LENGTH, SCREEN_HEIGHT * .1, 1, None, high_score_is_needed=True)
     intermediate_screen = IntermediateScreen(times_displayed=[.75])
 
     def __init__(self):

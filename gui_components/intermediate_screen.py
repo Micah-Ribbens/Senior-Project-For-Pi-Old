@@ -42,7 +42,9 @@ class IntermediateScreen(Screen):
         for x in range(number_of_screens):
             screen = Screen()
 
-            screen.components = [TextBox(texts[x], 30, BACKGROUND_COLOR, white, True)]
+            text_box = TextBox(texts[x], 30, BACKGROUND_COLOR, white, True)
+            text_box.number_set_dimensions(0, 0, SCREEN_LENGTH, SCREEN_HEIGHT)
+            screen.components = [text_box]
             self.screens.append(screen)
 
     def set_texts(self, texts):

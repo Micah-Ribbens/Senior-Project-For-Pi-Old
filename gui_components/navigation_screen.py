@@ -2,12 +2,11 @@ from math import sqrt
 
 from base.colors import pleasing_green, white
 from gui_components.dimensions import Dimensions
-from base.utility_functions import key_is_clicked, mouse_is_clicked
+from base.utility_functions import button_is_clicked, mouse_is_clicked
 from gui_components.grid import Grid
 from gui_components.screen import Screen
 from gui_components.text_box import TextBox
 from base.important_variables import *
-from library_abstraction.keys import KEY_ESCAPE
 
 
 class NavigationScreen(Screen):
@@ -48,8 +47,14 @@ class NavigationScreen(Screen):
             if self.buttons[x].got_clicked() and self.selected_screen == self:
                 self.selected_screen = self.screens[x]
 
-        if key_is_clicked(self.back_to_main_screen_key):
-            self.selected_screen = self
+        # if key_is_clicked(self.back_to_main_screen_key):
+        #     self.selected_screen = self
+
+        if button_is_clicked(BUTTON_SELECT):
+            self.selected_screen = self.screens[1]
+
+        if button_is_clicked(BUTTON_START):
+            self.selected_screen = self.screens[3]
 
         if self.selected_screen != self:
             self.selected_screen.run()

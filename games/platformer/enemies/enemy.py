@@ -4,7 +4,7 @@ from base.engines import CollisionsEngine
 from base.history_keeper import HistoryKeeper
 from games.platformer.weapons.weapon_user import WeaponUser
 from game_dependencies.platformer.health_bar import HealthBar
-from library_abstraction.utility_functions import load_and_transform_image
+from base.utility_functions import load_and_transform_image
 from game_dependencies.platformer.platformer_constants import ENEMY_OBJECT_TYPE
 
 

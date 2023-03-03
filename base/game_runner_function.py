@@ -2,7 +2,7 @@ import time
 from base.important_variables import *
 from base.history_keeper import HistoryKeeper
 from base.velocity_calculator import VelocityCalculator
-from library_abstraction.utility_functions import *
+from library_abstraction import utility_functions
 
 def run_game(main_screen):
     """ Runs all the game code. This will add 'main_screen' to the 'game_window,' so the 'main_screen' components and run
@@ -10,7 +10,7 @@ def run_game(main_screen):
         This function specifically calls game_window.add_screen() and call_every_cycle()"""
 
     game_window.add_screen(main_screen)
-    call_every_cycle(_run_game_every_cycle)
+    utility_functions.call_every_cycle(_run_game_every_cycle)
 
 
 def _run_game_every_cycle(cycle_time, is_start_time, should_render):

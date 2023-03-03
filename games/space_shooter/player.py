@@ -6,7 +6,7 @@ from gui_components.component import Component
 from gui_components.dimensions import Dimensions
 from base.utility_functions import *
 from games.space_shooter.laser import Laser
-from library_abstraction.keys import KEY_F
+from base.important_variables import KEY_F
 
 
 class Player(Component):

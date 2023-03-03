@@ -1,11 +1,27 @@
 from math import sqrt
 
 from base.fraction import Fraction
-from base.important_variables import keyboard, game_window, SCREEN_LENGTH, SCREEN_HEIGHT
+from base.important_variables import keyboard, SCREEN_LENGTH, SCREEN_HEIGHT
 import random
 
-from library_abstraction.utility_functions import *
+from library_abstraction import utility_functions
 from base.range import Range
+
+# Retrieving the functions from the game library code
+load_image = getattr(utility_functions, "load_image")
+load_text = getattr(utility_functions, "load_text")
+render_text = getattr(utility_functions, "render_text")
+render_image = getattr(utility_functions, "render_image")
+render_rectangle = getattr(utility_functions, "render_rectangle")
+set_up_window = getattr(utility_functions, "set_up_window")
+key_is_pressed = getattr(utility_functions, "key_is_pressed")
+mouse_was_pressed = getattr(utility_functions, "mouse_was_pressed")
+call_every_cycle = getattr(utility_functions, "call_every_cycle")
+is_mouse_collision = getattr(utility_functions, "is_mouse_collision")
+get_time_passed = getattr(utility_functions, "get_time_passed")
+load_and_transform_image = getattr(utility_functions, "load_and_transform_image")
+get_directional_path_to_image = getattr(utility_functions, "get_directional_path_to_image")
+button_is_pressed = getattr(utility_functions, "button_is_pressed")
 
 
 def key_is_pressed(key):
@@ -28,7 +44,29 @@ def key_has_been_released(key):
 def get_time_of_key_being_held_in(key):
     """:returns: float; the amount of time that the key has been held down"""
 
-    return keyboard.get_key_timed_event(key).current_time
+    return keyboard.get_key_timed_event(key).current_tim
+
+def button_is_pressed(button):
+    """:returns: bool; whether that button is currently held down (pressed)"""
+
+    return keyboard.get_button_event(button).happened_this_cycle
+
+
+def button_is_clicked(button):
+    """:returns: bool; whether the button was not held down last cycle and is this cycle (clicked)"""
+
+    return keyboard.get_button_event(button).is_click()
+
+
+def button_has_been_released(button):
+    """:returns: bool; whether the button was held down last cycle and is not this cycle (released)"""
+    return keyboard.get_button_event(button).has_stopped()
+
+
+def get_time_of_button_being_held_in(button):
+    """:returns: float; the amount of time that the button has been held down"""
+
+    return keyboard.get_button_timed_event(button).current_time
 
 
 def mouse_is_clicked():

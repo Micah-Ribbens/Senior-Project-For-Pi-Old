@@ -5,7 +5,7 @@ from gui_components.component import Component
 from base.engines import CollisionsEngine
 from base.important_variables import SCREEN_LENGTH
 from base.velocity_calculator import VelocityCalculator
-from library_abstraction.utility_functions import load_and_transform_image, get_directional_path_to_image
+from base.utility_functions import load_and_transform_image, get_directional_path_to_image
 
 
 class WeaponUser(Component, GameObject):

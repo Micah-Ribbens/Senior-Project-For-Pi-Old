@@ -142,9 +142,8 @@ class Player(Component):
         return current_coordinate
 
     def render(self):
-        direction = "right.png" if self.is_facing_right else "left.png"
-        original_path = f"games/bird_shooter/images/player{self.player_number}_" if self.stun_event.has_finished() else f"games/bird_shooter/images/stunned_"
-        self.path_to_image = f"{original_path}{direction}"
+        original_path = f"games/bird_shooter/images/player{self.player_number}" if self.stun_event.has_finished() else f"games/bird_shooter/images/stunned"
+        self.path_to_image = get_directional_path_to_image(original_path, self.is_facing_right, "")
 
         original_turret_path = f"games/bird_shooter/images/beak"
         turret_type = "_stunned.png" if not self.stun_event.has_finished() else ".png"

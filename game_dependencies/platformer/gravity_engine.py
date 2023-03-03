@@ -1,5 +1,6 @@
 from base.quadratic_equations import PhysicsPath
 from base.velocity_calculator import VelocityCalculator
+from base.utility_functions import rounded
 
 
 class GravityEngine:
@@ -17,13 +18,18 @@ class GravityEngine:
     def add_game_objects(self, game_objects):
         """Adds game_objects so they are affected gravity"""
 
+
         for game_object in game_objects:
             physics_path = PhysicsPath()
             physics_path.acceleration = self.acceleration
             self.game_object_to_physics_path[game_object] = physics_path
 
+        # print("CALLED", len(self.game_object_to_physics_path.keys()))
+
     def run(self):
         """Runs all the gravity code"""
+
+        # print(len(self.game_object_to_physics_path.keys()))
 
         for game_object in self.game_object_to_physics_path.keys():
             if not game_object.is_on_platform:
@@ -33,6 +39,7 @@ class GravityEngine:
                 physics_path.run(game_object.is_on_platform, not game_object.is_on_platform)
 
                 game_object.top_edge += physics_path.get_acceleration_displacement()
+
 
     def reset(self):
         """Resets everything back to the start of the game"""

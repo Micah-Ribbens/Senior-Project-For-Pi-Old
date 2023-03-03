@@ -15,7 +15,7 @@ from gui_components.text_box import TextBox
 from games.space_shooter.meteorite import Meteorite
 from games.space_shooter.player import Player
 from gui_components.hud import HUD
-from library_abstraction.keys import *
+from base.important_variables import *
 
 class MeteoriteGameScreen(Screen):
     players = []
@@ -50,11 +50,11 @@ class MeteoriteGameScreen(Screen):
 
         number_of_points_fields = number_of_players if is_versus else 1
         self.player_scores = [0] * number_of_points_fields
-        self.hud = HUD(number_of_points_fields, [], SCREEN_LENGTH, SCREEN_HEIGHT * .1, 1, None)
+        self.hud = HUD(number_of_points_fields, [], SCREEN_LENGTH, SCREEN_HEIGHT * .1, 1, None, high_score_is_needed=True)
 
         self.create_meteorites()
         self.set_players_left_edge()
-        self.intermediate_screen = IntermediateScreen()
+        self.intermediate_screen = IntermediateScreen(times_displayed=[1.2])
 
     def run(self):
         if self.intermediate_screen.has_finished():
@@ -171,7 +171,8 @@ class MeteoriteGameScreen(Screen):
     def display_message(self):
         message = self.get_versus_message() if self.is_versus else self.get_coop_message()
 
-        self.intermediate_screen.display(message, 5)
+        self.intermediate_screen.set_texts([message])
+        self.intermediate_screen.display()
 
     def get_versus_message(self):
         player_number_who_won = 0

@@ -34,17 +34,18 @@ class HUD(Component):
         self.player_points_fields = []
         self.rows = rows
         self.columns = columns
+        self.high_score_is_needed = high_score_is_needed
 
         if high_score_is_needed:
             self.high_score_field = TextBox("", 28, pleasing_green, white, True)
-            self.components = [self.high_score_field]
+            other_fields += [self.high_score_field]
 
         colors = [blue, red, black, orange, purple, yellow]
 
         for x in range(number_of_points_fields):
             self.player_points_fields.append(TextBox("", 28, white, colors[x], True))
 
-        self.components = other_fields + self.player_points_fields
+        self.components = self.player_points_fields + other_fields
 
         grid = Grid(Dimensions(0, 0, length, height), rows, columns)
         grid.turn_into_grid(self.components, None, None)

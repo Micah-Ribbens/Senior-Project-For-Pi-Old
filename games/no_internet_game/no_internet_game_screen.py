@@ -2,14 +2,14 @@ import random
 
 from base.engines import CollisionsEngine
 from base.file_reader import FileReader
-from base.utility_functions import key_is_clicked
+from base.utility_functions import key_is_clicked, button_is_pressed
 from base.velocity_calculator import VelocityCalculator
 from base.important_variables import *
 from games.no_internet_game.character import Player
 from gui_components.component import Component
 from gui_components.hud import HUD
 from gui_components.screen import Screen
-from library_abstraction.keys import KEY_W
+from base.important_variables import DPAD_RIGHT, DPAD_LEFT, BUTTON_A, BUTTON_X, BUTTON_Y, BUTTON_B
 
 class NoInternetGameScreen(Screen):
     enemies = []
@@ -29,8 +29,8 @@ class NoInternetGameScreen(Screen):
 
     player_points = 0
     high_score = 0
-    hud = HUD(1, [], SCREEN_LENGTH, SCREEN_HEIGHT * .08, 1, None)
-    player = Player([KEY_A, KEY_D, KEY_W], ground_top_edge)
+    hud = HUD(1, [], SCREEN_LENGTH, SCREEN_HEIGHT * .08, 1, None, high_score_is_needed=True)
+    player = Player([DPAD_LEFT, DPAD_RIGHT, BUTTON_A], ground_top_edge)
     game_is_paused = False
 
     def __init__(self):
@@ -47,7 +47,6 @@ class NoInternetGameScreen(Screen):
 
         if can_spawn_enemy:
             index_cutoff = 2 if is_double_tree else 1
-            print(is_double_tree)
             self.spawnable_enemies = self.spawnable_enemies[index_cutoff:]
             self.spawn_random_enemy()
 
@@ -93,7 +92,7 @@ class NoInternetGameScreen(Screen):
             self.add_enemy(tree2)
 
     def run(self):
-        if key_is_clicked(KEY_S) and self.game_is_paused:
+        if button_is_pressed(BUTTON_B) and self.game_is_paused:
             self.reset_game()
             self.game_is_paused = False
             self.player.game_is_paused = False
@@ -127,9 +126,8 @@ class NoInternetGameScreen(Screen):
                 self.request_points(enemy)
 
             if CollisionsEngine.is_collision(self.player, enemy):
-                pass
-                # self.game_is_paused = True
-                # self.player.game_is_paused = True
+                self.game_is_paused = True
+                self.player.game_is_paused = True
 
         self.enemies = alive_enemies
 

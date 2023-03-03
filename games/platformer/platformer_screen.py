@@ -59,7 +59,7 @@ class PlatformerScreen(Screen):
     hud_length = SCREEN_LENGTH - health_grid_length
     hud_height = VelocityCalculator.get_dimension(SCREEN_HEIGHT, 6)
     ammo_field = TextBox("Ammo Left:", 20, white, brown, True)
-    hud = HUD(1, [ammo_field], hud_length, hud_height, 1, None)
+    hud = HUD(1, [ammo_field], hud_length, hud_height, 1, None, high_score_is_needed=True)
     powerups = []
 
     # Scoring
@@ -82,7 +82,7 @@ class PlatformerScreen(Screen):
     def setup_players(self):
         """Creates all the player's and all the necessary stuff associated with them (GravityEngine, HealthGrid, Generator, HUD)"""
 
-        self.players = [Player(KEY_A, KEY_D, KEY_W, KEY_S, KEY_F)]
+        self.players = [Player(DPAD_LEFT, DPAD_RIGHT, BUTTON_A, DPAD_DOWN, BUTTON_B)]
         self.gravity_engine = GravityEngine(self.players, self.players[0].jumping_path.acceleration)
 
         for player in self.players:
@@ -178,7 +178,7 @@ class PlatformerScreen(Screen):
 
             new_enemy = self.get_random_enemy(new_platform)
             self.enemies.append(new_enemy)
-            self.gravity_engine.add_game_objects([new_enemy])
+            # self.gravity_engine.add_game_objects([new_enemy])
 
             self.number_of_platforms_generated += 1
             self.run_powerup_spawning(new_platform)
@@ -430,7 +430,7 @@ class PlatformerScreen(Screen):
         for game_object in self.players + self.enemies:
             game_components += game_object.get_components()
 
-        game_components += self.player_health_bars + self.platforms + self.powerups + [self.wall_of_death] + [self.hud]
+        game_components += self.player_health_bars + self.platforms + self.powerups + [self.hud, self.wall_of_death]
         return game_components if self.intermediate_screen.has_finished() else self.intermediate_screen.get_components()
 
     # HELPER METHODS FOR COLLISIONS; Since they all have a unique length I can just use the lengths here

@@ -197,7 +197,7 @@ class PhysicsPath(PhysicsEquation):
             :parameter attribute_modifying: String; the name of the attribute this path is modifying
             :parameter time: float; the time to the vertex of the path
             :parameter height_of_path: float; the difference between the initial distance and the vertex of the path
-            :parameter max_time: float; the max time of the path- the time the path should end
+            :parameter max_time: float; the max time of the path - the time the path should end
 
             :returns: None
         """

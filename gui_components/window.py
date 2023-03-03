@@ -1,4 +1,4 @@
-from library_abstraction.utility_functions import set_up_window
+from library_abstraction import utility_functions
 
 
 class Window:
@@ -17,7 +17,7 @@ class Window:
             :returns: None
         """
 
-        set_up_window(length, height, BACKGROUND_COLOR, title)
+        utility_functions.set_up_window(length, height, BACKGROUND_COLOR, title)
 
     def add_screen(self, screen):
         """Adds the screen to 'self.screens' so the Window keeps track of it"""
@@ -48,7 +48,9 @@ class Window:
                 screen.render_background()
 
             for component in screen.get_components():
-                component.run()
+
+                if component.is_runnable:
+                    component.run()
 
                 if should_render:
                     component.render()

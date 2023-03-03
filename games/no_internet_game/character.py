@@ -1,10 +1,11 @@
 from gui_components.dimensions import Dimensions
 from base.events import TimedEvent
 from base.important_variables import *
-from base.utility_functions import key_is_pressed, key_is_clicked
+from base.utility_functions import button_is_pressed, button_is_clicked
 from base.velocity_calculator import VelocityCalculator
 from gui_components.component import Component
-from library_abstraction.utility_functions import load_image
+from base.utility_functions import load_image
+from pygame_abstraction import variables
 
 
 class Player(Component):
@@ -61,14 +62,14 @@ class Player(Component):
 
         distance = VelocityCalculator.get_distance(self.forwards_velocity)
 
-        self.left_edge += distance if key_is_pressed(self.right_key) else 0
-        self.left_edge -= distance * 1.5 if key_is_pressed(self.left_key) else 0
+        self.left_edge += distance if button_is_pressed(self.right_key) else 0
+        self.left_edge -= distance * 1.5 if button_is_pressed(self.left_key) else 0
 
         self.left_edge = 0 if self.left_edge < 0 else self.left_edge
         self.left_edge = self.max_right_edge - self.length if self.right_edge > self.max_right_edge else self.left_edge
 
     def run_jumping(self):
-        if key_is_clicked(self.jump_key) and not self.is_in_air:
+        if button_is_clicked(self.jump_key) and not self.is_in_air:
             self.is_in_air = True
 
         if self.is_in_air:

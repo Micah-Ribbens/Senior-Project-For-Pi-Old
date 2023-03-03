@@ -1,6 +1,6 @@
 from base.events import Event, TimedEvent
-from library_abstraction.keys import keys
-from library_abstraction.utility_functions import mouse_was_pressed, key_is_pressed
+from library_abstraction import keys
+from library_abstraction import utility_functions
 
 
 class Keyboard:
@@ -10,38 +10,86 @@ class Keyboard:
 
     key_events = []
     key_timed_events = []
+    button_timed_events = {}
+    button_events = {}
     mouse_clicked_event = Event()
 
     def __init__(self):
         """Initializes all the key events"""
 
-        for x in range(len(keys)):
+        for x in range(len(keys.keys)):
             self.key_events.append(Event())
             self.key_timed_events.append(TimedEvent(0))
-    
+
+        for button in keys.buttons:
+            self.button_events[button] = Event()
+            self.button_timed_events[button] = TimedEvent(0)
+
     def get_key_timed_event(self, key):
         """:returns: TimedEvent; the TimedEvent associated with that key"""
 
-        return self.key_timed_events[key]
+        return_value = None
+
+        if self.button_timed_events.get(key) is None:
+            return_value = self.key_timed_events[key]
+
+        else:
+            return_value = self.get_button_timed_event(key)
+
+        return return_value
 
     def get_key_event(self, key):
         """:returns: Event; the Event associated with that key"""
 
-        return self.key_events[key]
+        return_value = None
+
+        if self.button_events.get(key) is None:
+            return_value = self.key_events[key]
+
+        else:
+            return_value = self.get_button_event(key)
+
+        return return_value
+    def get_button_event(self, button):
+        """:returns: Event; the Event associated with that button"""
+
+        return self.button_events[button]
+
+    def get_button_timed_event(self, button):
+        """:returns: TimedEvent; the TimedEvent associated with that button"""
+
+        return self.button_timed_events[button]
 
     def run(self):
         """ Runs all the events in key_events and key_timed_events, so attributes about the keys can be viewed. This function
             SHOULD NOT be called by the user and this library automatically calls it"""
 
-        self.mouse_clicked_event.run(mouse_was_pressed())
+        self.mouse_clicked_event.run(utility_functions.mouse_was_pressed())
 
-        for key in keys:
-            key_was_pressed = key_is_pressed(key)
+
+        for key in keys.keys:
+            key_was_pressed = utility_functions.key_is_pressed(key)
+
+            if utility_functions.key_is_pressed(key):
+                print("STOP")
 
             self.get_key_event(key).run(key_was_pressed)
 
             should_reset = not self.get_key_event(key).happened_last_cycle() and not key_was_pressed
 
             self.get_key_timed_event(key).run(should_reset, key_was_pressed)
+
+        for button in keys.buttons:
+
+            button_was_pressed = utility_functions.button_is_pressed(button)
+
+            if button_was_pressed:
+                print("STOP")
+
+            self.get_button_event(button).run(button_was_pressed)
+
+            should_reset = not self.get_button_event(button).happened_last_cycle() and not button_was_pressed
+
+            self.get_button_timed_event(button).run(should_reset, button_was_pressed)
 
 
