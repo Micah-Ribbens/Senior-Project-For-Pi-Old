@@ -17,10 +17,12 @@ def convert_to_int(*args):
     return return_value
 
 def load_image(path_to_image):
-    """Loads the image from that path_to_image for quick rendering (should be called before the game starts running)"""
+    """ Loads the image from that path_to_image for quick rendering (should be called before the game starts running)
+        :returns: int[] {image_length, image_height}; the length and height of the image"""
 
     if images.get(path_to_image) is None:
         images[path_to_image] = pygame.image.load(path_to_image).convert_alpha()
+    return images[path_to_image].get_size()
 
 def load_text(name, font_size, background_color, text_color):
     """Loads the text for quick rendering (should be called before the game starts running)"""
@@ -127,19 +129,6 @@ def call_every_cycle(function):
             if event.type == pygame.QUIT:
                 # on_close_function()
                 pygame.quit()
-
-            # y -> 3
-            # x -> 0
-            # a -> 1
-            # b -> 2
-            # start -> 9
-            # select -> 8
-            # l -> 4
-            # r -> 5
-
-            if variables.joystick.get_button(3):
-                print(variables.joystick.get_axis(0))
-                print(variables.joystick.get_axis(1))
 
         variables.window.fill(variables.background_color)
 

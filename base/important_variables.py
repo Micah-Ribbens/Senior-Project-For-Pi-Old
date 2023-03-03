@@ -1,8 +1,14 @@
 """Holds all the important variables for the game like screen_dimensions, BACKGROUND_COLOR, etc"""
 
+from base.library_changer import LibraryChanger
+from base.important_constants import *
+
+if not LibraryChanger.get_library_has_been_set():
+    LibraryChanger.set_game_library(DEFAULT_RENDERING_ENGINE)
+    print("SET RENDING ENGIEN")
+
 from base.keyboard import Keyboard
 from gui_components.window import Window
-from base.important_constants import *
 from library_abstraction import keys
 
 keyboard = Keyboard()

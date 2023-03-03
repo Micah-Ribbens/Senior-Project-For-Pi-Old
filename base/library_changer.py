@@ -8,6 +8,8 @@ class LibraryChanger:
         IMPORTANT: All the methods of this class must be called from the second line onwards with the first line being
         from base.library_changer import LibraryChanger, so none of the other code is initialized with the old constants."""
 
+    library_has_been_set = False
+
     @staticmethod
     def set_screen_dimensions(screen_length, screen_height):
             """Sets the dimensions of the screen. IMPORTANT see class description for details on how to call the methods """
@@ -34,6 +36,7 @@ class LibraryChanger:
             'pygame'"""
 
         valid_library_names = ["pyglet", "pygame"]
+        LibraryChanger.library_has_been_set = True
 
         if not valid_library_names.__contains__(library_name):
             raise ValueError(f"Do not recognize 'library_name' {library_name}. Here are the valid values: ['pyglet', 'pygame']")
@@ -47,4 +50,10 @@ class LibraryChanger:
             library_abstraction.keys = importlib.import_module("pygame_abstraction.keys")
             library_abstraction.utility_functions = importlib.import_module("pygame_abstraction.utility_functions")
             library_abstraction.variables = importlib.import_module("pygame_abstraction.variables")
+
+    @staticmethod
+    def get_library_has_been_set():
+        """:returns: bool; whether the library for the game engine has been set"""
+
+        return LibraryChanger.library_has_been_set
 

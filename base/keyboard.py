@@ -1,6 +1,7 @@
 from base.events import Event, TimedEvent
 from library_abstraction import keys
 from library_abstraction import utility_functions
+from library_abstraction import variables
 
 
 class Keyboard:
@@ -66,30 +67,32 @@ class Keyboard:
 
         self.mouse_clicked_event.run(utility_functions.mouse_was_pressed())
 
-
         for key in keys.keys:
             key_was_pressed = utility_functions.key_is_pressed(key)
-
-            if utility_functions.key_is_pressed(key):
-                print("STOP")
 
             self.get_key_event(key).run(key_was_pressed)
 
             should_reset = not self.get_key_event(key).happened_last_cycle() and not key_was_pressed
 
             self.get_key_timed_event(key).run(should_reset, key_was_pressed)
+        
+        # If no controller is hooked up, then the buttons should not be run
+        # TODO make this more general purpose- have it work for multiple controllers
+        if variables.joystick is not None:
+            self.run_buttons()
+
+
+
+    def run_buttons(self):
+        """Runs all the button events, so important information can be gotten from them"""
 
         for button in keys.buttons:
 
             button_was_pressed = utility_functions.button_is_pressed(button)
-
-            if button_was_pressed:
-                print("STOP")
 
             self.get_button_event(button).run(button_was_pressed)
 
             should_reset = not self.get_button_event(button).happened_last_cycle() and not button_was_pressed
 
             self.get_button_timed_event(button).run(should_reset, button_was_pressed)
-
 
