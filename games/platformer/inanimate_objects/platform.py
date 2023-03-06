@@ -17,7 +17,7 @@ class Platform(Component, GameObject):
     def __init__(self, top_edge=0, left_edge=0, length=0, height=0):
         """Initializes the object"""
 
-        super().__init__("games/platformer/images/platform.png")
+        super().__init__("games/platformer/images/platform.bmp")
         self.number_set_dimensions(top_edge, left_edge, length, height)
 
 

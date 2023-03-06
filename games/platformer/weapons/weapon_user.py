@@ -34,7 +34,7 @@ class WeaponUser(Component, GameObject):
         """Initializes the object"""
 
         load_and_transform_image(base_path_to_image)
-        super().__init__(f"{base_path_to_image}_left.png")
+        super().__init__(f"{base_path_to_image}_left.bmp")
         self.base_path_to_image = base_path_to_image
 
         self.collidable_components = [self]

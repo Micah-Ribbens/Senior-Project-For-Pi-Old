@@ -35,10 +35,10 @@ class Player(Component):
         self.left_key, self.right_key, self.jump_key = keys
 
         for x in range(self.total_frames):
-            load_image(f"{self.base_path}{x}.png")
+            load_image(f"{self.base_path}{x}.bmp")
 
-        super().__init__(f"{self.base_path}0.png")
-        load_image(f"{self.base_path}{self.jump_frame}.png")
+        super().__init__(f"{self.base_path}0.bmp")
+        load_image(f"{self.base_path}{self.jump_frame}.bmp")
         self.initial_distance = ground_top_edge - self.height
 
         time_to_vertex = .4
@@ -94,7 +94,7 @@ class Player(Component):
             overshoot_time = self.next_frame_event.current_time - self.next_frame_event.time_needed
             self.next_frame_event.current_time = overshoot_time
 
-        self.path_to_image = f"{self.base_path}{self.animation_frame}.png"
+        self.path_to_image = f"{self.base_path}{self.animation_frame}.bmp"
 
     def reset(self):
         self.time_in_air, self.animation_frame = 0, 0

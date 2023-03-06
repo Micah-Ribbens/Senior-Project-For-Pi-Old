@@ -47,8 +47,8 @@ class Player(Component):
     cap_extension = ceil(21 / 86 * length)
 
     def __init__(self, player_keys, player_number, boundaries, is_facing_right):
-        super().__init__(f"games/bird_shooter/images/player{player_number}_right.png")
-        self.path_to_bullet_image = f"games/bird_shooter/images/player{player_number}_bullet.png"
+        super().__init__(f"games/bird_shooter/images/player{player_number}_right.bmp")
+        self.path_to_bullet_image = f"games/bird_shooter/images/player{player_number}_bullet.bmp"
 
         self.left_key, self.right_key, self.up_key, self.down_key, self.shoot_key, self.move_turret_key = player_keys
 
@@ -60,8 +60,8 @@ class Player(Component):
 
         self.min_left_edge, self.max_left_edge, self.min_top_edge, self.max_top_edge = boundaries
 
-        self.turret = Component("games/bird_shooter/images/beak.png")
-        self.eye = Component("games/bird_shooter/images/enemy_eye.png")
+        self.turret = Component("games/bird_shooter/images/beak.bmp")
+        self.eye = Component("games/bird_shooter/images/enemy_eye.bmp")
 
         self.eye.length, self.eye.height = self.eye_size
 
@@ -69,7 +69,7 @@ class Player(Component):
         self.is_facing_right, self.player_number = is_facing_right, player_number
 
         transformation_paths = [f"games/bird_shooter/images/player{player_number}", "games/bird_shooter/images/stunned"]
-        other_paths = [f"games/bird_shooter/images/beak.png", f"games/bird_shooter/images/beak_stunned.png", f"games/bird_shooter/images/enemy_eye.png"]
+        other_paths = [f"games/bird_shooter/images/beak.bmp", f"games/bird_shooter/images/beak_stunned.bmp", f"games/bird_shooter/images/enemy_eye.bmp"]
 
         for image_path in other_paths:
             load_image(image_path)
@@ -146,7 +146,7 @@ class Player(Component):
         self.path_to_image = get_directional_path_to_image(original_path, self.is_facing_right, "")
 
         original_turret_path = f"games/bird_shooter/images/beak"
-        turret_type = "_stunned.png" if not self.stun_event.has_finished() else ".png"
+        turret_type = "_stunned.bmp" if not self.stun_event.has_finished() else ".bmp"
         self.turret.path_to_image = f"{original_turret_path}{turret_type}"
 
         # self.eye.left_edge = self.eye_right_position if self.is_facing_right else self.eye_left_position

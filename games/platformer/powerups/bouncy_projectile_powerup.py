@@ -8,7 +8,7 @@ class BouncyProjectilePowerup(Powerup):
     def __init__(self, left_edge, top_edge):
         """Initializes the object"""
 
-        super().__init__(left_edge, top_edge, "games/platformer/images/bouncy_gun.png")
+        super().__init__(left_edge, top_edge, "games/platformer/images/bouncy_gun.bmp")
 
     def run_player_collision(self, player):
         """Gives the player the bouncy projectile shooter"""

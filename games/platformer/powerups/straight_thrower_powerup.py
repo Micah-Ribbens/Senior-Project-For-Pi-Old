@@ -8,7 +8,7 @@ class StraightProjectilePowerup(Powerup):
     def __init__(self, left_edge, top_edge):
         """Initializes the object"""
 
-        super().__init__(left_edge, top_edge, "games/platformer/images/straight_gun.png")
+        super().__init__(left_edge, top_edge, "games/platformer/images/straight_gun.bmp")
 
     def run_player_collision(self, player):
         """Gives the player the straight projectile shooter"""

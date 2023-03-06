@@ -34,7 +34,7 @@ class NoInternetGameScreen(Screen):
     game_is_paused = False
 
     def __init__(self):
-        super().__init__("games/no_internet_game/images/background.png")
+        super().__init__("games/no_internet_game/images/background.bmp")
         self.spawn_random_enemy()
 
         file_reader = FileReader("games/no_internet_game/high_scores.txt")
@@ -51,7 +51,7 @@ class NoInternetGameScreen(Screen):
             self.spawn_random_enemy()
 
     def request_points(self, enemy):
-        is_tree = enemy.path_to_image == "games/no_internet_game/images/tree.png"
+        is_tree = enemy.path_to_image == "games/no_internet_game/images/tree.bmp"
 
         if not is_tree or enemy.height == self.tree_height:
             self.player_points += 100
@@ -74,19 +74,19 @@ class NoInternetGameScreen(Screen):
     def spawn_fish(self):
         top_edge = random.choice([self.low_fish_top_edge, self.medium_fish_top_edge, self.high_fish_top_edge])
 
-        fish = Component("games/no_internet_game/images/enemy.png")
+        fish = Component("games/no_internet_game/images/enemy.bmp")
         fish.number_set_dimensions(SCREEN_LENGTH, top_edge, self.fish_length, self.fish_height)
         self.add_enemy(fish)
 
     def spawn_tree(self):
         number_of_trees = random.choice([1, 2])
 
-        tree = Component("games/no_internet_game/images/tree.png")
+        tree = Component("games/no_internet_game/images/tree.bmp")
         tree.number_set_dimensions(SCREEN_LENGTH, self.ground_top_edge - self.tree_height, self.tree_length, self.tree_height)
         self.add_enemy(tree)
 
         if number_of_trees == 2:
-            tree2 = Component("games/no_internet_game/images/tree.png")
+            tree2 = Component("games/no_internet_game/images/tree.bmp")
             tree_height = self.second_tree_height
             tree2.number_set_dimensions(tree.right_edge, self.ground_top_edge - tree_height, self.tree_length * .7, tree_height)
             self.add_enemy(tree2)

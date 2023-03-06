@@ -34,7 +34,7 @@ class BirdShooterScreen(Screen):
     intermediate_screen = IntermediateScreen(times_displayed=[.75])
 
     def __init__(self):
-        super().__init__("games/bird_shooter/images/background.png")
+        super().__init__("games/bird_shooter/images/background.bmp")
         self.center_players()
 
     def run(self):

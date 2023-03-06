@@ -164,11 +164,11 @@ def mouse_was_pressed():
 def load_and_transform_image(image_path):
     """Loads the image at the 'image_path' then it also loads an image that is the horizontal mirror of the original image"""
 
-    original_image = pyglet.image.load(f"{image_path}_right.png")
+    original_image = pyglet.image.load(f"{image_path}_right.bmp")
     transformed_image = original_image.get_texture().get_transform(flip_x=True)
 
-    images[f"{image_path}_right.png"] = [original_image, False]
-    images[f"{image_path}_left.png"] = [transformed_image, True]
+    images[f"{image_path}_right.bmp"] = [original_image, False]
+    images[f"{image_path}_left.bmp"] = [transformed_image, True]
 
 
 def get_directional_path_to_image(base_image_path, direction_is_right, additional_path_after_direction):
@@ -176,4 +176,4 @@ def get_directional_path_to_image(base_image_path, direction_is_right, additiona
 
     direction_image_path = "right" if direction_is_right else "left"
 
-    return f"{base_image_path}_{direction_image_path}{additional_path_after_direction}.png"
+    return f"{base_image_path}_{direction_image_path}{additional_path_after_direction}.bmp"

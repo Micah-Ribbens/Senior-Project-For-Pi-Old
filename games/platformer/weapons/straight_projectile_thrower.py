@@ -29,7 +29,7 @@ class StraightProjectile(Component):
 
         self.base_path_to_image = base_path_to_image
         load_and_transform_image(base_path_to_image)
-        super().__init__(f"{base_path_to_image}_right.png")
+        super().__init__(f"{base_path_to_image}_right.bmp")
 
         self.number_set_dimensions(left_edge, top_edge, self.length, self.height)
 

@@ -71,7 +71,7 @@ class PlatformerScreen(Screen):
     def __init__(self):
         """Initializes the object"""
 
-        super().__init__("games/platformer/images/background_faded.png")
+        super().__init__("games/platformer/images/background_faded.bmp")
 
         file_reader = FileReader("games/platformer/high_scores.txt")
         self.high_score = int(file_reader.get_float_list("high_scores")[0])

@@ -37,7 +37,7 @@ class MeteoriteGameScreen(Screen):
     hud = None
 
     def __init__(self, number_of_players, is_versus):
-        super().__init__("games/space_shooter/images/galaxy.png")
+        super().__init__("games/space_shooter/images/galaxy.bmp")
         self.is_versus = is_versus
 
         players_keys = [[KEY_A, KEY_D, KEY_S], [KEY_LEFT, KEY_RIGHT, KEY_UP]]
@@ -46,7 +46,7 @@ class MeteoriteGameScreen(Screen):
 
         for x in range(number_of_players):
             player_keys = players_keys[x]
-            self.players.append(Player(player_keys[0], player_keys[1], player_keys[2], f"games/space_shooter/images/player{x + 1}.png", f"games/space_shooter/images/laser{x + 1}.png"))
+            self.players.append(Player(player_keys[0], player_keys[1], player_keys[2], f"games/space_shooter/images/player{x + 1}.bmp", f"games/space_shooter/images/laser{x + 1}.bmp"))
 
         number_of_points_fields = number_of_players if is_versus else 1
         self.player_scores = [0] * number_of_points_fields

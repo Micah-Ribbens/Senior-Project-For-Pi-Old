@@ -16,7 +16,7 @@ class WallOfDeath(Component, GameObject):
     def __init__(self):
         """Initializes the object"""
 
-        super().__init__("games/platformer/images/wall_of_death.png")
+        super().__init__("games/platformer/images/wall_of_death.bmp")
         self.delayed_start_timed_event.start()
         self.number_set_dimensions(-SCREEN_LENGTH, 0, SCREEN_LENGTH, SCREEN_HEIGHT)
 

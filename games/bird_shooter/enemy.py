@@ -18,8 +18,8 @@ class Enemy(Component):
     # Size and Eyes
     length = VelocityCalculator.get_dimension(SCREEN_LENGTH, 11)
     height = length
-    left_eye = Component("games/bird_shooter/images/enemy_eye.png")
-    right_eye = Component("games/bird_shooter/images/enemy_eye.png")
+    left_eye = Component("games/bird_shooter/images/enemy_eye.bmp")
+    right_eye = Component("games/bird_shooter/images/enemy_eye.bmp")
 
     def __init__(self):
         super().__init__("")
@@ -30,7 +30,7 @@ class Enemy(Component):
         self.right_eye.length, self.right_eye.height = self.eye_size
 
     def run(self):
-        self.path_to_image = "games/bird_shooter/images/enemy_right.png" if self.is_moving_right else "games/bird_shooter/images/enemy_left.png"
+        self.path_to_image = "games/bird_shooter/images/enemy_right.bmp" if self.is_moving_right else "games/bird_shooter/images/enemy_left.bmp"
 
         if self.hits_left_to_change_direction <= 0:
             self.hits_left_to_change_direction = self.total_hits_to_change_direction

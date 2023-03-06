@@ -15,7 +15,7 @@ class Meteorite(Component):
     last_player_hit_by = 0
 
     def __init__(self, meteorite_path, time_for_completion):
-        super().__init__("games/space_shooter/images/meteorite.png")
+        super().__init__("games/space_shooter/images/meteorite.bmp")
         Dimensions.__init__(self, 0, 0, self.length, self.height)
 
         self.left_edge_path = LineSegment(Point(0, meteorite_path.start_point.x_coordinate),
