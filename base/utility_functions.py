@@ -44,7 +44,7 @@ def key_has_been_released(key):
 def get_time_of_key_being_held_in(key):
     """:returns: float; the amount of time that the key has been held down"""
 
-    return keyboard.get_key_timed_event(key).current_tim
+    return keyboard.get_key_timed_event(key).current_time
 
 def button_is_pressed(button):
     """:returns: bool; whether that button is currently held down (pressed)"""
