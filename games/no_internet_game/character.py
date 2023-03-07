@@ -42,7 +42,7 @@ class Player(Component):
         self.initial_distance = ground_top_edge - self.height
 
         time_to_vertex = .4
-        self.vertex_height = 270
+        self.vertex_height = SCREEN_HEIGHT * .33
         vertex = self.initial_distance - self.vertex_height
 
         # Gotten using math
